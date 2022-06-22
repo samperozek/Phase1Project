@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const margaritaTitle = document.createElement('p')
             margaritaTitle.textContent = jsonObject.strDrink
             margaritaList.append(margaritaTitle)
-            console.log(margaritaTitle)
 
             margaritaTitle.addEventListener('click', () => {
                 
@@ -69,7 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
             newComment = `${event.target.review.value}\n`
             commentList.append(newComment)            
         })
-              
+        
+        document.querySelector('#margarita-name').addEventListener('mouseover', () => {
+            let margaritaImagePop = document.querySelector('#margaritaImage')
+            margaritaImagePop.src = "https://media1.giphy.com/media/JdaeRw3TIEuCmj7DAG/200.gif"
+        })
     }
 
     //End of DOM Content Loaded Function - Insert all code above
