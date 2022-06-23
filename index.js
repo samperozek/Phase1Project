@@ -17,14 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let ingredient5 = document.createElement('p')
         let ingredient6 = document.createElement('p')
         let ingredient7 = document.createElement('p')
-        let ingredient8 = document.createElement('p')
-        let ingredient9 = document.createElement('p')
-        let ingredient10 = document.createElement('p')
-        let ingredient11 = document.createElement('p')
-        let ingredient12 = document.createElement('p')
-        let ingredient13 = document.createElement('p')
-        let ingredient14 = document.createElement('p')
-        let ingredient15 = document.createElement('p')
+   
 
         drinkList.forEach(iterateArray)
         
@@ -38,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const margaritaImage = document.querySelector('#margaritaImage')
                 const margaritaName = document.querySelector('#margarita-name')
                 const ingredientList = document.querySelector('#margarita-ingredients')
-                
+                ingredientList.innerHTML = ``
                 margaritaImage.src = jsonObject.strDrinkThumb + "/preview"
                 margaritaName.textContent = jsonObject.strDrink
                 
@@ -46,32 +39,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 jsonObject.strIngredient2 === null ? ingredient2.remove():ingredient2.textContent = jsonObject.strMeasure2 + " " + jsonObject.strIngredient2
                 jsonObject.strIngredient3 === null ? ingredient3.remove():ingredient3.textContent = jsonObject.strMeasure3 + " " + jsonObject.strIngredient3
                 jsonObject.strIngredient4 === null ? ingredient4.remove():ingredient4.textContent = jsonObject.strMeasure4 + " " + jsonObject.strIngredient4
-                jsonObject.strIngredient5 === null ? ingredient5.remove():ingredient5.textContent = jsonObject.strMeasure5 + " " + jsonObject.strIngredient5
-                jsonObject.strIngredient6 === null ? ingredient6.remove():ingredient6.textContent = jsonObject.strMeasure6 + " " + jsonObject.strIngredient6
-                jsonObject.strIngredient7 === null ? ingredient7.remove():ingredient7.textContent = jsonObject.strMeasure7 + " " + jsonObject.strIngredient7
-                jsonObject.strIngredient8 === null ? ingredient8.remove():ingredient8.textContent = jsonObject.strMeasure8 + " " + jsonObject.strIngredient8
-                jsonObject.strIngredient9 === null ? ingredient9.remove():ingredient9.textContent = jsonObject.strMeasure9 + " " + jsonObject.strIngredient9
-                jsonObject.strIngredient10 === null ? ingredient10.remove():ingredient10.textContent = jsonObject.strMeasure10 + " " + jsonObject.strIngredient10
-                jsonObject.strIngredient11 === null ? ingredient11.remove():ingredient11.textContent = jsonObject.strMeasure11 + " " + jsonObject.strIngredient11
-                jsonObject.strIngredient12 === null ? ingredient12.remove():ingredient12.textContent = jsonObject.strMeasure12 + " " + jsonObject.strIngredient12
-                jsonObject.strIngredient13 === null ? ingredient13.remove():ingredient13.textContent = jsonObject.strMeasure13 + " " + jsonObject.strIngredient13
-                jsonObject.strIngredient14 === null ? ingredient14.remove():ingredient14.textContent = jsonObject.strMeasure14 + " " + jsonObject.strIngredient14
-                jsonObject.strIngredient15 === null ? ingredient15.remove():ingredient15.textContent = jsonObject.strMeasure15 + " " + jsonObject.strIngredient15
+                jsonObject.strIngredient5 === null ? ingredient5.innerHTML = ``:ingredient5.textContent = jsonObject.strMeasure5 + " " + jsonObject.strIngredient5
+                jsonObject.strIngredient6 === null ? ingredient6.innerHTML = ``:ingredient6.textContent = jsonObject.strMeasure6 + " " + jsonObject.strIngredient6
+                jsonObject.strIngredient7 === null ? ingredient7.innerHTML = ``:ingredient7.textContent = jsonObject.strMeasure7 + " " + jsonObject.strIngredient7
+                commentList.innerHTML = ``
 
-                ingredientList.append(ingredient1,ingredient2,ingredient3,ingredient4,ingredient5,ingredient6,ingredient7,ingredient8,ingredient9,ingredient10,ingredient11,ingredient12,ingredient13,ingredient14,ingredient15)
+                ingredientList.append(ingredient1,ingredient2,ingredient3,ingredient4,ingredient5,ingredient6,ingredient7)
+               
+
             })
         }
 
         document.querySelector('#comment-form').addEventListener('submit', (event) => {
             event.preventDefault()
-            let newComment = document.createElement('li') 
-            newComment = `${event.target.review.value}\n`
-            commentList.append(newComment)            
+            let newComment = document.createElement('p') 
+            newComment.textContent = `${event.target.review.value}`
+            commentList.append(newComment) 
+            newComment.addEventListener('click', () => {
+                newComment.remove()
+            })          
         })
         
         document.querySelector('#margarita-name').addEventListener('mouseover', () => {
             let margaritaImagePop = document.querySelector('#margaritaImage')
             margaritaImagePop.src = "https://media1.giphy.com/media/JdaeRw3TIEuCmj7DAG/200.gif"
+        })
+
+        document.querySelector("#randomGenerator").addEventListener("click", () => {
+            fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+            .then(res => res.json())
+            .then(data => randomDisplay(data))
+
+            function randomDisplay (jsonObject) {
+                const drinkListRandom = jsonObject.drinks[0]
+                const margaritaImageRandom = document.querySelector('#margaritaImage')
+                const margaritaNameRandom = document.querySelector('#margarita-name')
+                const ingredientListRandom = document.querySelector('#margarita-ingredients')
+                
+                ingredientListRandom.innerHTML = ``
+                margaritaImageRandom.src = drinkListRandom.strDrinkThumb + "/preview"
+                margaritaNameRandom.textContent = drinkListRandom.strDrink
+                
+                drinkListRandom.strIngredient1 === null ? ingredient1.remove():ingredient1.textContent = drinkListRandom.strMeasure1 + " " + drinkListRandom.strIngredient1
+                drinkListRandom.strIngredient2 === null ? ingredient2.remove():ingredient2.textContent = drinkListRandom.strMeasure2 + " " + drinkListRandom.strIngredient2
+                drinkListRandom.strIngredient3 === null ? ingredient3.remove():ingredient3.textContent = drinkListRandom.strMeasure3 + " " + drinkListRandom.strIngredient3
+                drinkListRandom.strIngredient4 === null ? ingredient4.remove():ingredient4.textContent = drinkListRandom.strMeasure4 + " " + drinkListRandom.strIngredient4
+                drinkListRandom.strIngredient5 === null ? ingredient5.innerHTML = ``:ingredient5.textContent = drinkListRandom.strMeasure5 + " " + drinkListRandom.strIngredient5
+                drinkListRandom.strIngredient6 === null ? ingredient6.innerHTML = ``:ingredient6.textContent = drinkListRandom.strMeasure6 + " " + drinkListRandom.strIngredient6
+                drinkListRandom.strIngredient7 === null ? ingredient7.innerHTML = ``:ingredient7.textContent = drinkListRandom.strMeasure7 + " " + drinkListRandom.strIngredient7
+                commentList.innerHTML = ``
+                
+                ingredientListRandom.append(ingredient1,ingredient2,ingredient3,ingredient4,ingredient5,ingredient6,ingredient7)
+            
+            
+            }
         })
     }
 

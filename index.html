@@ -2,16 +2,19 @@
   <head>
     <meta charset="UTF-8" />
     <title>Margarita Recipes</title>
-    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <link rel="stylesheet" type="text/css" href="./styles copy.css" />
     <script defer type="text/javascript" src="./index.js"></script>
   </head>
-  <body>
-    <header>
-      <h1>Popular Margarita Recipes!</h1>
-      <h4 class ="h8">Click on a name below for the recipe:</h4>
-        <ul id="margaritaList"></ul>
-    </header>
-    <main>
+  
+  <section class="layout">
+    <div class="header">
+      <h1>Popular Margarita Recipes!</h1>   
+    </div>
+    <div class="leftSide">
+      <h4>Click on a name below for the recipe!</h4>
+      <ul id="margaritaList"></ul>
+    </div>
+    <div class="body">
       <div class="margarita-details">
         <h2 id="margarita-name">Margaritas = 😊</h2>
         <img
@@ -21,16 +24,17 @@
         />
         <p>
           <p id="margarita-ingredients">Margarita Ingredients:</p>
-        </p>
-
-        <h3>Add Recipe Comments Here:</h3>
+    </div>
+    <div class = "rightside"></div>
+    <div class="footer">
+      <h3>Add Recipe Comments Here:</h3>
         <ul id="comment-list"></ul>
         <form id="comment-form">
           <label for="review">Add Comment:</label>
           <textarea id="review"></textarea>
           <button type="submit">Submit</button>
         </form>
-      </div>
-    </main>
-  </body>
+        <button id = "randomGenerator" type = "submit">RANDOM Cocktail Generator</button>
+    </div>
+  </section>
 </html>
